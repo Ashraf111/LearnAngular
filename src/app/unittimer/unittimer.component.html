@@ -1,0 +1,40 @@
+<div class="action_panel">
+  <div class="timer_container">
+
+    <div *ngIf="isToggleUnitItem > 1" class="timer_box" matTooltip="Timer" >
+      <button *ngIf="isToggleUnitItem > 2" class="btn btn_reset" (click)=reset()>
+        <span class="icon icons-reset"></span>
+      </button>
+      <button class="btn btn_pause" *ngIf="!editMode && isRunning && isToggleUnitItem > 3" type="button"
+        (click)="stop()">
+        <span class="icon icons-pause"></span>
+      </button>
+      <button class="btn btn_play" *ngIf="editMode || !isRunning && isToggleUnitItem > 3" type="button"
+        (click)="resume()">
+        <span class="icon icons-play "></span>
+      </button>
+      <input class="timer_field" type="text" maxlength="2" max="99" (click)="enableEditMode($event)"
+        (blur)="calculateUnit()" (keyup)="handleKeyPress($event,'hours')" [(ngModel)]="hours" required /> <strong
+        class="blink">:</strong>
+      <input class="timer_field" type="text" maxlength="2" max="59" (click)="enableEditMode($event)"
+        (blur)="calculateUnit()" (keyup)="handleKeyPress($event,'minutes')" [(ngModel)]="minutes" required /> <strong
+        class="blink">:</strong>
+      <input class="timer_field" type="text" maxlength="2" max="59" (click)="enableEditMode($event)"
+        (blur)="calculateUnit()" (keyup)="handleKeyPress($event,'seconds')" [(ngModel)]="seconds" required />
+    </div>
+
+    <input *ngIf="isToggleUnitItem > 4" class="unit_field"  matTooltip="Unit" type="text"
+      maxlength="3" [(ngModel)]="totalUnitCount" (click)=clickOnSelect($event) (ngModelChange)="enableEditMode($event)"
+      (dblClick)="enableEditMode($event)" (keyup)="calculateWorkTime()" (keydown)="handleKeyPress($event,'unitarea')" />
+
+    <input *ngIf="isToggleUnitItem > 5" class="charge_field"  matTooltip="Charge" type="text"
+      maxlength="7" [(ngModel)]="displayRate" (click)=clickOnSelect($event) (ngModelChange)="enableEditMode($event)"
+      (dblClick)="enableEditMode($event)" (blur)="calculateChargeUnit()"
+      (keydown)="handleKeyPress($event,'amountarea')" />
+
+    <button *ngIf="showBillable" mat-flat-button class="btn_billable" placement="left"
+    matTooltip="{{isBillable? 'Billable': isBilled?'Billed':'Un-Billable'}}" [ngClass]="{'isDisable':isDisabled,'billed': isBilled, 'billable': isBillable}" (click)="onBillable()">
+      <span class="icons-{{isBillable? 'billable':'unbillable'}} click2"></span>
+    </button>
+  </div>
+</div>

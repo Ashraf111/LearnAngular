@@ -1,0 +1,99 @@
+@use "src/assets/scss/abstracts/colors" as color;
+@use "src/assets/scss/abstracts/others" as other;
+
+
+:host {
+    align-self: center;
+}
+
+.timer_container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.btn_pause,
+.btn_play,
+.btn_reset {
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+    padding: 0;
+    background: none;
+    color: color.$matter_color;
+    .icon {
+        font-size: 1.2rem;
+    }
+    // border: 0.0625rem solid color.$matter_color;
+}
+.btn_billable {
+    width: 4rem;
+    font-size: 1.3rem;
+    border: 0.0625rem solid color.$matter_color;
+    border-radius: 0.25rem;
+    background: #fff;
+    color: #888;
+    &.billed {
+        color: #f00;
+    }
+    &.billable {
+        color:  color.$matter_color;
+    }
+}
+.charge_field,
+.unit_field,
+.timer_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.0625rem solid color.$matter_color;
+    border-radius: 0.25rem;
+    width: 100%;
+    max-width: 10.625rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    height: 2.1875rem;
+    color: color.$matter_color;
+}
+.charge_field {
+    text-align: right;
+    width: 5rem;
+}
+.unit_field {
+    width: 3rem;
+    text-align: center;
+}
+
+.timer_field {
+    color: color.$matter_color;
+    max-width: 1.875rem;
+    padding: 0;
+    text-align: center;
+    border: none;
+}
+.btn.focus,
+.btn:focus {
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.billable,
+.save_timer {
+    display: inline-block;
+    padding: 0 0.3125rem;
+    margin: 0 0.3125rem;
+    border: other.$border;
+}
+.cancel_timer {
+    padding: 0.125rem 0.5rem;
+}
+.blink {
+    animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
