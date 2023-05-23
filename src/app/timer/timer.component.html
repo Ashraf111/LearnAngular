@@ -1,0 +1,22 @@
+<div class="timer-container">
+  <a *ngIf="showRunTimer" (click)="runningTimer('reset')" class="timer-action" href="javascript:void(0)">
+    <i class="material-icons">replay</i>
+  </a>
+  <a *ngIf="isRunning && showRunTimer" (click)="runningTimer('stop')" class="timer-action pause_icon"
+    href="javascript:void(0)">
+    <i class="material-icons">pause_circle_outline</i>
+  </a>
+  <a *ngIf="!isRunning && showRunTimer" (click)="runningTimer('start')" class="timer-action" href="javascript:void(0)">
+    <i class="material-icons">play_circle_outline</i>
+  </a>
+  <span class="counter">
+    <input [disabled]="isDisabled" type="text" class="timer-count" name="hours" maxlength="2" max="99" (click)="enableEditMode($event)"
+      (keyup)="handleKeyPress($event,'hours')" (blur)="calculateTimeSpent('hours')" [(ngModel)]="hours">
+    <span class="timer-count-separator" [class.blink]="isRunning">:</span>
+    <input [disabled]="isDisabled" type="text" class="timer-count" name="minutes" maxlength="2" max="59" (click)="enableEditMode($event)"
+      (keyup)="handleKeyPress($event,'minutes')" (blur)="calculateTimeSpent('minutes')" [(ngModel)]="minutes">
+    <span class="timer-count-separator" [class.blink]="isRunning">:</span>
+    <input [disabled]="isDisabled" type="text" class="timer-count" name="seconds" maxlength="2" max="59" (click)="enableEditMode($event)"
+      (keyup)="handleKeyPress($event,'seconds')" (blur)="calculateTimeSpent('seconds')" [(ngModel)]="seconds">
+  </span>
+</div>
